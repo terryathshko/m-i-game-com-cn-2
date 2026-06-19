@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://terryathshko.github.io/m-i-game-com-cn-2/sitemap.xml
