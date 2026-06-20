@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料索引 · 悟空体育知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f9fc;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 目录感标题区 */
+        .hero {
+            background: linear-gradient(145deg, #e0f0f5 0%, #cde5ed 100%);
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 6px 14px rgba(0, 40, 50, 0.08);
+            border: 1px solid rgba(60, 140, 150, 0.15);
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #0c3b44;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #3d6b76;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #8bb9c5;
+        }
+
+        .hero p {
+            max-width: 680px;
+            color: #1f4b56;
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero .meta-tag {
+            display: inline-block;
+            background: #fff;
+            padding: 0.3rem 1.1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #1a5c6a;
+            border: 1px solid #7fbbc9;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .grid-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(30, 60, 70, 0.06);
+            border: 1px solid #daecf0;
+            transition: transform 0.15s ease, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(20, 80, 90, 0.08);
+            border-color: #9dcbd8;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0b4f5c;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h3 .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #2d8f9e;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2c4d58;
+            margin-bottom: 1rem;
+        }
+
+        .card .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.6rem;
+            margin-top: 0.7rem;
+        }
+
+        .tag {
+            background: #e8f3f7;
+            color: #1d6270;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid #b7d5de;
+        }
+
+        .info-section {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 1.8rem;
+            margin-bottom: 2rem;
+            border: 1px solid #dceef3;
+        }
+
+        .info-section h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #0a4552;
+            border-left: 5px solid #3b9caa;
+            padding-left: 1rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .info-section p {
+            color: #274c57;
+            margin-bottom: 1rem;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .info-section li {
+            position: relative;
+            padding-left: 1.2rem;
+            color: #1e5664;
+            font-size: 0.95rem;
+        }
+
+        .info-section li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #3799a9;
+            font-size: 1.1rem;
+        }
+
+        .faq-preview {
+            background: #ecf6f9;
+            border-radius: 20px;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b9caa;
+        }
+
+        .faq-preview h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0b4f5c;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-item strong {
+            color: #154f5d;
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item span {
+            color: #306a78;
+            font-size: 0.92rem;
+        }
+
+        .remark-box {
+            background: #d8eef5;
+            border-radius: 18px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0;
+            border: 1px solid #a1cddb;
+            color: #10444f;
+            font-size: 0.95rem;
+        }
+
+        .remark-box a {
+            color: #116d7e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #56aebb;
+            font-weight: 500;
+        }
+
+        .remark-box a:hover {
+            color: #04323b;
+            text-decoration-color: #04323b;
+        }
+
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            margin: 1.5rem 0 0.5rem;
+            padding: 0.6rem 0;
+            border-top: 1px solid #cde0e6;
+        }
+
+        .related-links a {
+            color: #1d6f80;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px dotted #94c2cf;
+        }
+
+        .related-links a:hover {
+            color: #043b47;
+            border-bottom-color: #043b47;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #c7dde4;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #4b7785;
+        }
+
+        .footer-note a {
+            color: #1a697b;
+            text-decoration: none;
+            border-bottom: 1px dotted #80b7c6;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 0.8rem;
+            }
+            .hero {
+                padding: 1.5rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+                flex-wrap: wrap;
+            }
+            .grid-nav {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .info-section {
+                padding: 1.5rem 1rem;
+            }
+            .faq-preview {
+                padding: 1.2rem 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 3rem 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- hero 目录感 -->
+    <div class="hero">
+        <h1>
+            📋 资料索引
+            <small>知识库</small>
+        </h1>
+        <p>围绕 <a href="https://cn-wkty.com" style="color:#0b5c6b;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#5eadbe;">悟空体育</a> 整理的信息集合。从基础说明到常见疑问，这里尝试用卡片与条目呈现一份可浏览、可回溯的参考页。内容保持精简，适合快速定位。</p>
+        <span class="meta-tag">📁 整理中 · 持续补充</span>
+        <span class="meta-tag" style="margin-left:0.5rem;">🏷️ 知识库 v0.2</span>
+    </div>
+
+    <!-- 网格卡片：四个目录块 -->
+    <div class="grid-nav">
+        <div class="card">
+            <h3><span class="dot"></span> 平台概览</h3>
+            <p>包含基础信息、服务定位与主要功能模块，适合首次接触时浏览。</p>
+            <div class="tag-list">
+                <span class="tag">介绍</span>
+                <span class="tag">定位</span>
+                <span class="tag">功能</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3><span class="dot"></span> 使用场景</h3>
+            <p>收集了常见的访问环境、设备适配与日常使用方式，供参考对照。</p>
+            <div class="tag-list">
+                <span class="tag">移动端</span>
+                <span class="tag">桌面</span>
+                <span class="tag">网络</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3><span class="dot"></span> 信息提示</h3>
+            <p>关于账号、内容更新及访问时可能需要注意的若干事项。</p>
+            <div class="tag-list">
+                <span class="tag">提示</span>
+                <span class="tag">注意</span>
+                <span class="tag">更新</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3><span class="dot"></span> 相关条目</h3>
+            <p>汇总与平台关联的说明、参考链接以及补充资料。</p>
+            <div class="tag-list">
+                <span class="tag">参考</span>
+                <span class="tag">链接</span>
+                <span class="tag">归档</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 说明区：内容场景 -->
+    <div class="info-section">
+        <h2>内容方向与场景</h2>
+        <p>本页从资料整理的角度出发，不侧重推广或引导，只记录与 <a href="https://cn-wkty.com" style="color:#0f6576;text-decoration:underline;text-underline-offset:2px;">悟空体育</a> 相关的结构信息。以下几类场景在整理中比较常见：</p>
+        <ul>
+            <li>快速了解平台主要功能模块</li>
+            <li>查阅基础访问方式与环境说明</li>
+            <li>浏览常见问题摘要（见下方）</li>
+            <li>获取相关参考链接与条目</li>
+        </ul>
+        <div class="remark-box">
+            💡 提示：页面内容仅作为索引参考，更完整的信息建议直接浏览 <a href="https://cn-wkty.com">悟空体育</a> 上的对应页面。
+        </div>
+    </div>
+
+    <!-- 提示区：简洁提示 -->
+    <div class="info-section" style="background:#f0f8fb;">
+        <h2>使用提示</h2>
+        <p>根据已有资料整理，以下几点在访问时值得留意：</p>
+        <ul>
+            <li>建议使用系统自带的浏览器，保持更新以获得较好体验</li>
+            <li>部分内容可能随版本调整，以实际页面为准</li>
+            <li>网络环境稳定时访问更流畅</li>
+            <li>如遇到显示问题，可尝试清理缓存或更换设备</li>
+        </ul>
+        <div style="margin-top:1rem; font-size:0.9rem; color:#2d6c7b; background:#e5f2f7; padding:0.6rem 1rem; border-radius:40px; display:inline-block;">
+            ⚡ 信息采集时间：2025年4月
+        </div>
+    </div>
+
+    <!-- FAQ 摘要区 -->
+    <div class="faq-preview">
+        <h3>❓ 常见疑问摘要</h3>
+        <div class="faq-item">
+            <strong>· 如何获取平台最新动态？</strong>
+            <span>通常可以在 <a href="https://cn-wkty.com" style="color:#136c7d;text-decoration:underline;text-underline-offset:2px;">悟空体育</a> 页面内留意公告区域，或参考相关栏目更新。</span>
+        </div>
+        <div class="faq-item">
+            <strong>· 页面是否支持移动端？</strong>
+            <span>根据现有信息，移动浏览器访问基本正常，横竖屏均可自适应。部分功能可能在竖屏下更紧凑。</span>
+        </div>
+        <div class="faq-item">
+            <strong>· 资料索引会更新吗？</strong>
+            <span>当前版本为基础整理，后续可能根据信息变化适度补充。建议以原站内容为准。</span>
+        </div>
+        <div style="margin-top:0.8rem; font-size:0.85rem; color:#2e6b7a;">
+            📎 更多疑问可自行查阅相关页面或联系对应渠道。
+        </div>
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="info-section">
+        <h2>相关信息</h2>
+        <p>以下链接与条目来自整理过程中的记录，可能与当前页面内容存在交叉。它们均指向外部参考，不保证长期有效。</p>
+        <div class="related-links">
+            <a href="#">关于平台功能说明</a>
+            <a href="#">常见问题归档</a>
+            <a href="#">版本更新摘要</a>
+            <a href="#">访问环境建议</a>
+        </div>
+        <p style="margin-top:0.8rem; font-size:0.9rem; color:#346e7d;">
+            🔗 其中部分条目直接关联到 <a href="https://cn-wkty.com" style="color:#116c7e;text-decoration:underline;">悟空体育</a> 的对应板块。
+        </p>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+        <p>资料整理页 · 内容基于公开信息汇编 · 仅供参考</p>
+        <p style="margin-top:0.3rem;">本索引与 <a href="https://cn-wkty.com">悟空体育</a> 无直接隶属关系，仅为信息组织实践</p>
+    </div>
+</div>
+</body>
+</html>
